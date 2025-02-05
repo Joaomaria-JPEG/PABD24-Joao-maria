@@ -4,6 +4,8 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 20221074010038
@@ -206,11 +208,16 @@ public class TrianguloUi extends javax.swing.JFrame {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        if (aTF.getText().equals("") || bTF.getText().equals("") || cTF.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os lados", "Erro", JOptionPane.ERROR_MESSAGE);                 
+        }
+        else{
         double a = Double.parseDouble(aTF.getText());
         double b = Double.parseDouble(bTF.getText());
         double c = Double.parseDouble(cTF.getText());
         double area = Math.sqrt(((a+b+c)/2)*(((a+b+c)/2)-a)*(((a+b+c)/2)-b)*(((a+b+c)/2)-c));
-                    String tipo = "";
+        String tipo = "";
         if (a+b>c && a+c>b && c+b>a ) {
             if (a == b && b == c) {
                 tipo = "equilatero";
@@ -222,10 +229,11 @@ public class TrianguloUi extends javax.swing.JFrame {
             }else{
             tipo = "não é um triangulo";
             area = 0;
-            }
-        
+            }        
         tipoLabel.setText("TIPO: "+tipo);
         areaLabel.setText(String.format("AREA: %.4f", area));
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
